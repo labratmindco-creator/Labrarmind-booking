@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="LabRatMind is a three-week, one-to-one confidence experiment built around your real-life patterns.">
+  <meta name="theme-color" content="#1b1f1a">
+  <title>LabRatMind — Run the experiment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1f1a'/%3E%3Cpath d='M17 41c8-13 22-13 30 0M22 25c0-7 4-12 10-12s10 5 10 12c0 6-3 9-6 12H28c-3-3-6-6-6-12Z' fill='none' stroke='%23d39a55' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='27' cy='24' r='2' fill='%23f3eee2'/%3E%3Ccircle cx='37' cy='24' r='2' fill='%23f3eee2'/%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#1b1f1a;--panel:#23271f;--panel2:#2b3025;--ink:#f3eee2;--muted:#aaa99a;--line:#3a4033;--amber:#d39a55;--amber2:#ebbc7e;--sage:#777d67;--danger:#e99c8d}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit}
+    h1,h2,h3{font-family:"Spectral",serif;font-weight:500;letter-spacing:-.02em;margin:0}
+    p{margin:0}
+    .shell{width:min(1180px,calc(100% - 40px));margin:auto}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand{font-family:"Spectral",serif;font-size:1.5rem;text-decoration:none;display:flex;gap:.55rem;align-items:center}
+    .brand-mark{width:30px;height:30px;color:var(--amber)}
+    .nav-link{font-size:.9rem;color:var(--muted);text-decoration:none}.nav-link:hover{color:var(--ink)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(340px,.9fr);gap:clamp(36px,7vw,92px);align-items:start;padding:clamp(62px,9vw,118px) 0 96px}
+    .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;color:var(--amber);font-weight:600;margin-bottom:22px}
+    h1{font-size:clamp(3.2rem,7vw,6.5rem);line-height:.91;max-width:780px}
+    .hero-copy{max-width:640px;font-family:"Spectral",serif;font-size:clamp(1.22rem,2vw,1.62rem);line-height:1.45;color:#d8d3c7;margin-top:34px}
+    .hero-note{display:flex;align-items:center;gap:12px;color:var(--muted);margin-top:34px;font-size:.92rem}
+    .hero-note:before{content:"";width:34px;height:1px;background:var(--amber)}
+    .booking{background:var(--panel);border:1px solid var(--line);padding:28px;box-shadow:16px 16px 0 rgba(0,0,0,.12)}
+    .booking h2{font-size:2rem;line-height:1.15;margin-bottom:9px}
+    .booking-intro{color:var(--muted);font-size:.94rem;margin-bottom:28px}
+    .calendly-inline-widget{min-width:320px;height:700px;background:#fff}
+    .booking-continuation{padding:20px 0 0;border-top:1px solid var(--line);margin-top:18px}
+    .booking-continuation p{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+    .email-link{color:var(--amber);overflow-wrap:anywhere}.email-link:hover{color:var(--amber2)}
+    .field{margin:0 0 18px}.field label{display:block;margin-bottom:8px;font-size:.88rem;color:#d7d2c6}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:var(--panel2);color:var(--ink);padding:12px 13px;border-radius:2px;min-height:48px}
+    .field textarea{min-height:104px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid rgba(211,154,85,.35);border-color:var(--amber)}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn{border:0;background:var(--amber);color:#171a16;padding:14px 20px;font-weight:600;border-radius:2px;min-height:50px;transition:background .18s,transform .18s}
+    .btn:hover{background:var(--amber2)}.btn:active{transform:translateY(1px)}.btn:disabled{opacity:.45;cursor:not-allowed}
+    .btn.block{width:100%}.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}
+    .fine{font-size:.78rem;color:var(--muted);margin-top:12px}
+    .section{padding:96px 0;border-top:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;margin-bottom:56px}
+    .section h2{font-size:clamp(2.35rem,4.6vw,4.5rem);line-height:1.03}
+    .lead{font-family:"Spectral",serif;font-size:1.42rem;line-height:1.45;color:#d9d4c8;max-width:650px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .step{background:var(--bg);padding:34px 30px;min-height:335px}
+    .num{font-family:"Spectral",serif;color:var(--amber);font-size:1rem;margin-bottom:48px}
+    .step h3{font-size:1.65rem;margin-bottom:18px}.step p{color:var(--muted)}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+    .quote{font-family:"Spectral",serif;font-size:clamp(2rem,4vw,3.8rem);line-height:1.13;color:#ddd8cc}
+    .facts{display:grid;gap:0}.fact{padding:24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:28px 1fr;gap:12px}.fact:first-child{border-top:1px solid var(--line)}.fact span{color:var(--amber)}.fact p{color:var(--muted)}
+    .disclaimer{margin-top:38px;color:#898b7e;font-size:.86rem;max-width:720px}
+    footer{padding:36px 0 48px;color:var(--muted);display:flex;justify-content:space-between;gap:20px;font-size:.86rem}
+    .flow{display:none;min-height:100vh}.flow.active{display:block;animation:rise .38s ease both}
+    .flow-wrap{width:min(660px,calc(100% - 40px));margin:auto;padding:64px 0 110px}
+    .back{background:transparent;border:0;color:var(--muted);padding:0;margin-bottom:52px}.back:hover{color:var(--ink)}
+    .mark{color:var(--amber);width:56px;height:56px;margin-bottom:26px}
+    .flow h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.03;margin-bottom:18px}
+    .flow h2{font-size:2.1rem;margin-bottom:8px}
+    .muted{color:var(--muted)}
+    .summary{background:var(--panel);border:1px solid var(--line);padding:22px;margin:28px 0}.summary strong{display:block;color:var(--amber);font-weight:500}.summary span{color:#d6d2c6}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+    .divider{border:0;border-top:1px solid var(--line);margin:34px 0}
+    .form-progress{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+    .question{margin-bottom:25px}.question label{display:block;margin-bottom:8px}.question .qnum{color:var(--amber);font-family:"Spectral",serif;margin-right:7px}.hint{font-size:.82rem;color:var(--muted);margin:-3px 0 8px}
+    .question input,.question textarea{width:100%;border:1px solid var(--line);background:var(--panel2);color:var(--ink);padding:12px 13px;border-radius:2px;min-height:48px}.question textarea{min-height:104px;resize:vertical}.question input:focus,.question textarea:focus{outline:2px solid rgba(211,154,85,.35);border-color:var(--amber)}
+    .toast{display:none;color:var(--amber);margin-top:12px;font-size:.86rem}
+    .error{color:var(--danger);font-size:.82rem;min-height:20px;margin-top:10px}
+    @keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+    @media(max-width:860px){.hero{grid-template-columns:1fr}.booking{position:relative;top:auto}.section-head,.detail-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step{min-height:0}.num{margin-bottom:24px}.section{padding:72px 0}}
+    @media(max-width:560px){.shell,.flow-wrap{width:min(100% - 28px,660px)}.nav{height:66px}.nav-link{display:none}.hero{padding:52px 0 72px}.booking{padding:22px 18px;box-shadow:8px 8px 0 rgba(0,0,0,.13)}.field-row{grid-template-columns:1fr}.section{padding:62px 0}.step{padding:28px 22px}footer{flex-direction:column}.flow-wrap{padding-top:35px}.back{margin-bottom:38px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flow.active{animation:none}.btn{transition:none}}
+  </style>
+</head>
+<body>
+  <main id="landing">
+    <div class="shell">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="LabRatMind home">
+          <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M10 25c0-9 4-15 10-15s10 6 10 15c0 5-3 8-6 11h-8c-3-3-6-6-6-11Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 19c2-3 6-3 8 0M14 26h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          LabRatMind
+        </a>
+        <a class="nav-link" href="#how">How the experiment works</a>
+      </nav>
+
+      <section class="hero" id="top">
+        <div>
+          <div class="eyebrow">Confidence, tested in real life</div>
+          <h1>Be the scientist.<br>And the lab rat.</h1>
+          <p class="hero-copy">We find the loop where your confidence keeps failing you, form a hypothesis together, then test it in your actual life for three weeks.</p>
+          <p class="hero-note">Real data. Not a verdict.</p>
+        </div>
+
+        <aside class="booking" id="book" aria-labelledby="booking-title">
+          <div class="eyebrow">Zero-cost beta</div>
+          <h2 id="booking-title">Book your first session</h2>
+          <p class="booking-intro">Choose an available time for your 30-minute 1:1 conversation. Calendly will email you the appointment details.</p>
+          <div class="calendly-inline-widget" data-url="https://calendly.com/labratmindco/30min" aria-label="Choose a LabRatMind appointment in Calendly"></div>
+          <div class="booking-continuation">
+            <p>Already received your Calendly confirmation? Continue to the questions before we talk.</p>
+            <button class="btn block" type="button" onclick="continueAfterBooking()">I've booked — begin the reflection</button>
+          </div>
+        </aside>
+      </section>
+    </div>
+
+    <section class="section" id="how">
+      <div class="shell">
+        <div class="section-head"><div><div class="eyebrow">The method</div><h2>Three parts.<br>One honest test.</h2></div><p class="lead">You don’t get handed a program built for someone else. We build the hypothesis around what’s actually happening for you.</p></div>
+        <div class="steps">
+          <article class="step"><div class="num">01</div><h3>Form the hypothesis</h3><p>We find the specific pattern where your confidence keeps failing you, dig into where it comes from, and shape a hypothesis together.</p></article>
+          <article class="step"><div class="num">02</div><h3>Run the experiment</h3><p>For three weeks, you test it in real life. We check in weekly, see what’s holding and what isn’t, then adjust as we go.</p></article>
+          <article class="step"><div class="num">03</div><h3>Read the results</h3><p>We compare where you landed with where you started. If the hypothesis holds, it’s worth building on. If not, that’s useful data too.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell detail-grid">
+        <p class="quote">A practice built around you—not the person you think you should be.</p>
+        <div>
+          <div class="facts">
+            <div class="fact"><span>•</span><p>This beta is completely free.</p></div>
+            <div class="fact"><span>•</span><p>You get focused 1:1 work and weekly check-ins shaped around your real-life pattern.</p></div>
+            <div class="fact"><span>•</span><p>Show up, test honestly, and tell the truth about what is—and isn’t—working.</p></div>
+          </div>
+          <p class="disclaimer">LabRatMind is confidence and mindset work, not therapy or medical care. Nothing here is medical or clinical advice.</p>
+        </div>
+      </div>
+    </section>
+    <div class="shell"><footer><span>LabRatMind</span><span>Run the experiment. Read the results.</span></footer></div>
+  </main>
+
+  <main id="intake" class="flow" aria-hidden="true">
+    <div class="flow-wrap">
+      <section id="stateConfirm">
+        <svg class="mark" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 8C17 8 10 15 10 24c0 7 5 12.5 12 13.8M22 37.8c2.5.5 5 0 7-1M29 37h17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div class="eyebrow">Appointment confirmed</div>
+        <h1>Your session is booked.</h1>
+        <p class="muted">Calendly will email you the time and call details. Before we talk, take a few quiet minutes with the questions below.</p>
+        <div class="actions"><button class="btn" type="button" onclick="showIntakeForm()">Begin the reflection</button></div>
+      </section>
+
+      <section id="stateForm" hidden>
+        <div class="form-progress">Before we talk</div>
+        <h2>A few honest questions</h2>
+        <p class="muted">Answer honestly, not neatly. There’s no version of this that’s too messy to send.</p>
+        <hr class="divider">
+        <form id="intakeForm">
+          <div class="question"><label for="name"><span class="qnum">1.</span>Your name</label><input id="name" required></div>
+          <div class="question"><label for="email"><span class="qnum">2.</span>Your email</label><input id="email" type="email" required></div>
+          <div class="question"><label for="cycle"><span class="qnum">3.</span>What does the cycle look like for you right now?</label><p class="hint">The pattern that keeps repeating—however you’d describe it.</p><textarea id="cycle" required></textarea></div>
+          <div class="question"><label for="tried"><span class="qnum">4.</span>What have you already tried to break it?</label><textarea id="tried"></textarea></div>
+          <div class="question"><label for="shift"><span class="qnum">5.</span>If this actually shifted, what would be different in 90 days?</label><textarea id="shift"></textarea></div>
+          <div class="question"><label for="more"><span class="qnum">6.</span>Anything else I should know before we talk?</label><textarea id="more"></textarea></div>
+          <p class="fine">Fields 1–3 are required. Everything else—as much or as little as you want. Your answers will be prepared as an email to <a class="email-link" href="mailto:labratmindco@gmail.com">labratmindco@gmail.com</a>.</p>
+          <div class="actions"><button class="btn" type="submit">Send my answers</button></div>
+        </form>
+      </section>
+
+      <section id="stateDone" hidden>
+        <div class="eyebrow">Reflection complete</div><h1>Got it.</h1>
+        <p class="muted">Your email app should open with your answers ready to send. Please check the message and press Send. If nothing opened, copy your answers and email them to <a class="email-link" href="mailto:labratmindco@gmail.com">labratmindco@gmail.com</a>.</p>
+        <div class="actions"><button class="btn secondary" type="button" onclick="copyAnswers()">Copy my answers</button></div>
+        <div class="toast" id="copyToast" aria-live="polite">Copied—paste it into an email and send.</div>
+        <hr class="divider"><p class="muted">See you on the call.</p>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script>
+    const COACH_EMAIL="labratmindco@gmail.com";
+    let lastAnswers="";
+    let bookingCompleted=false;
+
+    function togglePage(id){
+      ["landing","intake"].forEach(pageId=>{
+        const el=document.getElementById(pageId),active=pageId===id;
+        el.classList.toggle("active",active&&pageId!=="landing");
+        el.style.display=active?(pageId==="landing"?"block":"block"):"none";
+        el.setAttribute("aria-hidden",String(!active));
+      });
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+    document.getElementById("landing").setAttribute("aria-hidden","false");
+
+    window.addEventListener("message",event=>{
+      if(!["https://calendly.com","https://www.calendly.com"].includes(event.origin) || event.data?.event!=="calendly.event_scheduled") return;
+      continueAfterBooking();
+    });
+    function continueAfterBooking(){
+      if(bookingCompleted) return;
+      bookingCompleted=true;
+      togglePage("intake");
+    }
+    function showIntakeForm(){document.getElementById("stateConfirm").hidden=true;document.getElementById("stateForm").hidden=false}
+    document.getElementById("intakeForm").addEventListener("submit",e=>{
+      e.preventDefault();
+      const data={name:value("name"),email:value("email"),cycle:value("cycle"),tried:value("tried"),shift:value("shift"),more:value("more")};
+      lastAnswers=`Name: ${data.name}\nEmail: ${data.email}\n\nThe cycle right now:\n${data.cycle}\n\nWhat they've already tried:\n${data.tried||"—"}\n\nWhat would be different in 90 days:\n${data.shift||"—"}\n\nAnything else:\n${data.more||"—"}`;
+      location.href=`mailto:${COACH_EMAIL}?subject=${encodeURIComponent("LabRatMind Intake — "+data.name)}&body=${encodeURIComponent(lastAnswers)}`;
+      document.getElementById("stateForm").hidden=true;document.getElementById("stateDone").hidden=false;window.scrollTo({top:0,behavior:"smooth"});
+    });
+    function value(id){return document.getElementById(id).value.trim()}
+    function copyAnswers(){navigator.clipboard.writeText(lastAnswers).then(()=>{const t=document.getElementById("copyToast");t.style.display="block";setTimeout(()=>t.style.display="none",4000)})}
+
+  </script>
+</body>
+</html>
